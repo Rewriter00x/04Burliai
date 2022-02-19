@@ -20,6 +20,13 @@ namespace _01Burliai.Tools.Controls
     /// </summary>
     public partial class DateSelector : UserControl
     {
+
+        public string Caption
+        {
+            get { return TbCaption.Text;}
+            set { TbCaption.Text = value; }
+        }
+
         public DateSelector()
         {
             InitializeComponent();

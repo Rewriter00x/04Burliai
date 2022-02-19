@@ -11,6 +11,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:DateSelector></controls:DateSelector>
+        <controls:DateSelector Caption="Select Your Birthday"></controls:DateSelector>
     </Grid>
 </UserControl>

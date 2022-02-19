@@ -12,8 +12,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="Caption"></TextBlock>
-        <DatePicker Name="DatePicker" Grid.Row="1"></DatePicker>
+        <TextBlock Name="TbCaption" Grid.Row="0" Text="Caption"></TextBlock>
+        <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="12.01.2002"></DatePicker>
         <Button Grid.Row="2" Content="Select Date" Command="{Binding CountCommand}"></Button>
     </Grid>
 </UserControl>
