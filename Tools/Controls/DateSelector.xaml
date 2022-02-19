@@ -1,16 +1,19 @@
-﻿<UserControl x:Class="_01Burliai.Views.DateCounterView"
+﻿<UserControl x:Class="_01Burliai.Tools.Controls.DateSelector"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:_01Burliai.Views"
-             xmlns:controls="clr-namespace:_01Burliai.Tools.Controls"
+             xmlns:local="clr-namespace:_01Burliai.Tools.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:DateSelector></controls:DateSelector>
+        <TextBlock Grid.Row="0" Text="Caption"></TextBlock>
+        <DatePicker Name="DatePicker" Grid.Row="1"></DatePicker>
+        <Button Grid.Row="2" Content="Select Date"></Button>
     </Grid>
 </UserControl>
