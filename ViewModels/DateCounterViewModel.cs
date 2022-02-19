@@ -38,6 +38,13 @@ namespace _01Burliai.ViewModels
 
         private void Output()
         {
+            TimeSpan span = DateTime.Today - (Date ?? DateTime.Today); // Here Date will never be null
+            int years = (new DateTime(1,1,1) + span).AddDays(-1).Year - 1;
+            if (years < 0 || years > 135)
+            {
+                MessageBox.Show("Invalid year");
+                return;
+            }
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
 
         }
