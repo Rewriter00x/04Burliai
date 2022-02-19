@@ -59,6 +59,7 @@
       <DependentUpon>DateSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\RelayCommand.cs" />
+    <Compile Include="ViewModels\DateCounterViewModel.cs" />
     <Compile Include="Views\DateCounterView.xaml.cs">
       <DependentUpon>DateCounterView.xaml</DependentUpon>
     </Compile>
@@ -111,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using _01Burliai.ViewModels;
 
 namespace _01Burliai.Views
 {
@@ -20,9 +21,12 @@ namespace _01Burliai.Views
     /// </summary>
     public partial class DateCounterView : UserControl
     {
+        private DateCounterViewModel _viewModel;
+
         public DateCounterView()
         {
             InitializeComponent();
+            DataContext = _viewModel = new DateCounterViewModel();
         }
     }
 }

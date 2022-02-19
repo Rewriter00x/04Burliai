@@ -14,6 +14,6 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Caption"></TextBlock>
         <DatePicker Name="DatePicker" Grid.Row="1"></DatePicker>
-        <Button Grid.Row="2" Content="Select Date"></Button>
+        <Button Grid.Row="2" Content="Select Date" Command="{Binding CountCommand}"></Button>
     </Grid>
 </UserControl>
