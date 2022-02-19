@@ -38,7 +38,8 @@ namespace _01Burliai.ViewModels
 
         private void Output()
         {
-            MessageBox.Show(Date.ToString());
+            if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
+
         }
 
         private bool CanExecute()
