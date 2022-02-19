@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_01Burliai.Tools.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             d:DesignHeight="200" d:DesignWidth="300"
+             x:Name="dateSelector">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -13,7 +14,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="TbCaption" Grid.Row="0" Text="Caption"></TextBlock>
-        <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="12.01.2002"></DatePicker>
+        <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="{Binding ElementName=dateSelector, Path=Date, Mode=OneWayToSource, UpdateSourceTrigger=LostFocus}"></DatePicker>
         <Button Grid.Row="2" Content="Select Date" Command="{Binding CountCommand}"></Button>
     </Grid>
 </UserControl>
