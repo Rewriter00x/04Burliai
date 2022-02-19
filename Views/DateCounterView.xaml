@@ -13,6 +13,5 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <controls:DateSelector x:Name="DateSelector" SelectedDate="{Binding Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Command="{Binding OutputCommand}" Caption="Select Your Birthday" Grid.Row="0"></controls:DateSelector>
-        <controls:ResultBlock x:Name="ResultBlock"  Grid.Row="1" Text1="Age" Text2="West Zodiac Sign" Text3="Chinese Zodiac Sign"></controls:ResultBlock>
     </Grid>
 </UserControl>
