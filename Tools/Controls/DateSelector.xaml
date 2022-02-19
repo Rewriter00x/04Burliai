@@ -13,8 +13,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Name="TbCaption" Grid.Row="0" Text="Caption"></TextBlock>
+        <TextBlock Name="TbCaption" Foreground="Gray" Grid.Row="0" Text="Caption"></TextBlock>
         <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
-        <Button Grid.Row="2" Content="Select Date" Command="{Binding OutputCommand}"></Button>
+        <Button Grid.Row="2" Height="30" Content="Select Date" Command="{Binding OutputCommand}"></Button>
     </Grid>
 </UserControl>
