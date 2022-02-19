@@ -58,6 +58,7 @@
     <Compile Include="Tools\Controls\DateSelector.xaml.cs">
       <DependentUpon>DateSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="Views\DateCounterView.xaml.cs">
       <DependentUpon>DateCounterView.xaml</DependentUpon>
     </Compile>
