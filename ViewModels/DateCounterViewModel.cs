@@ -46,7 +46,7 @@ namespace _01Burliai.ViewModels
                 return;
             }
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
-
+            
         }
 
         private bool CanExecute()

@@ -10,7 +10,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:DateSelector x:Name="DateSelector"  Caption="Select Your Birthday"></controls:DateSelector>
+        <controls:DateSelector x:Name="DateSelector"  Caption="Select Your Birthday" Grid.Row="0"></controls:DateSelector>
+        <controls:ResultBlock x:Name="ResultBlock"  Grid.Row="1" Text1="Age" Text2="West Zodiac Sign" Text3="Chinese Zodiac Sign"></controls:ResultBlock>
     </Grid>
 </UserControl>
