@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="TbCaption" Grid.Row="0" Text="Caption"></TextBlock>
-        <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="{Binding ElementName=dateSelector, Path=Date, Mode=OneWayToSource, UpdateSourceTrigger=LostFocus}"></DatePicker>
-        <Button Grid.Row="2" Content="Select Date" Command="{Binding CountCommand}"></Button>
+        <DatePicker Name="DatePicker" Grid.Row="1" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+        <Button Grid.Row="2" Content="Select Date" Command="{Binding OutputCommand}"></Button>
     </Grid>
 </UserControl>

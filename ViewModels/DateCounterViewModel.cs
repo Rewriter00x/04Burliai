@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using _01Burliai.Models;
 using _01Burliai.Tools;
 
 namespace _01Burliai.ViewModels
@@ -12,31 +13,37 @@ namespace _01Burliai.ViewModels
     class DateCounterViewModel
     {
         #region Fields
-        
+        private ZodiacSigns _signs = new ZodiacSigns();
 
         #region Commands
-        private RelayCommand<object> _countCommand;
+        private RelayCommand<object> _outputCommand;
         #endregion
         #endregion
 
         #region Properties
-        public RelayCommand<object> CountCommand
+        public DateTime? Date
+        {
+            get { return _signs.Date; }
+            set { _signs.Date = value; }
+        }
+
+        public RelayCommand<object> OutputCommand
         {
             get
             {
-                return _countCommand ?? (_countCommand = new RelayCommand<object>(_=>Count(), _=>CanExecute()));
+                return _outputCommand ?? (_outputCommand = new RelayCommand<object>(_=>Output(), _=>CanExecute()));
             }
         }
         #endregion
 
-        private void Count()
+        private void Output()
         {
-            MessageBox.Show("Success!");
+            MessageBox.Show(Date.ToString());
         }
 
         private bool CanExecute()
         {
-            return true;
+            return _signs.Date != null;
         }
     }
 }

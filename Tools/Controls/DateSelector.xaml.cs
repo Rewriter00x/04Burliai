@@ -27,12 +27,6 @@ namespace _01Burliai.Tools.Controls
             set { TbCaption.Text = value; }
         }
 
-        public DateTime Date
-        {
-            get { return (DateTime)DatePicker.SelectedDate; }
-            set { DatePicker.SelectedDate = value; }
-        }
-
         public DateSelector()
         {
             InitializeComponent();
