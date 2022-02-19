@@ -27,6 +27,32 @@ namespace _01Burliai.Tools.Controls
             set { TbCaption.Text = value; }
         }
 
+        public DateTime? SelectedDate
+        {
+            get { return DatePicker.SelectedDate; }
+            set { DatePicker.SelectedDate = value; }
+        }
+
+        public ICommand Command
+        {
+            get { return Button.Command; }
+            set { Button.Command = value; }
+        }
+
+        public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(
+            "SelectedDate",
+            typeof(DateTime?),
+            typeof(DateSelector),
+            new PropertyMetadata(null)
+            );
+
+        public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
+            "Command",
+            typeof(ICommand),
+            typeof(DateSelector),
+            new PropertyMetadata(null)
+        );
+
         public DateSelector()
         {
             InitializeComponent();

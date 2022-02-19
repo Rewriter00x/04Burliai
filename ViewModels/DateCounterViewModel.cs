@@ -27,6 +27,11 @@ namespace _01Burliai.ViewModels
             set { _signs.Date = value; }
         }
 
+        public string WestZodiacSign
+        {
+            get { return _signs.WestZodiacSign; }
+        }
+
         public RelayCommand<object> OutputCommand
         {
             get
@@ -46,7 +51,7 @@ namespace _01Burliai.ViewModels
                 return;
             }
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
-            
+            _signs.updateWestZodiac();
         }
 
         private bool CanExecute()
