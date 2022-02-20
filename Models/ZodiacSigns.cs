@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _01Burliai.Models
 {
     #region Enums
     enum WestZodiac
     {
+        Undefined = -1,
         Capricorn,
         Aquarius,
         Pisces,
@@ -25,6 +22,7 @@ namespace _01Burliai.Models
 
     enum ChineseZodiac
     {
+        Undefined = -1,
         Monkey,
         Rooster,
         Dog,
@@ -44,8 +42,8 @@ namespace _01Burliai.Models
     {
         #region Fields
         private DateTime? _date;
-        private string _westZodiac;
-        private string _chineseZodiac;
+        private WestZodiac _westZodiac = WestZodiac.Undefined;
+        private ChineseZodiac _chineseZodiac = ChineseZodiac.Undefined;
         #endregion
 
         #region Properties
@@ -55,12 +53,12 @@ namespace _01Burliai.Models
             set { _date = value; }
         }
 
-        public string WestZodiacSign
+        public WestZodiac WestZodiacSign
         {
             get { return _westZodiac; }
         }
 
-        public string ChineseZodiacSign
+        public ChineseZodiac ChineseZodiacSign
         {
             get { return _chineseZodiac; }
         }
@@ -76,48 +74,36 @@ namespace _01Burliai.Models
         }
         #endregion
 
-        private string NewWestZodiac()
+        private WestZodiac NewWestZodiac()
         {
             switch (_date?.Month)
             {
                 case 1:
-                    if (_date?.Day < 21) return WestZodiac.Capricorn.ToString();
-                    return WestZodiac.Aquarius.ToString();
+                    return _date?.Day < 21 ? WestZodiac.Capricorn : WestZodiac.Aquarius;
                 case 2:
-                    if (_date?.Day < 20) return WestZodiac.Aquarius.ToString();
-                    return WestZodiac.Pisces.ToString();
+                    return _date?.Day < 20 ? WestZodiac.Aquarius : WestZodiac.Pisces;
                 case 3:
-                    if (_date?.Day < 21) return WestZodiac.Pisces.ToString();
-                    return WestZodiac.Aries.ToString();
+                    return _date?.Day < 21 ? WestZodiac.Pisces : WestZodiac.Aries;
                 case 4:
-                    if (_date?.Day < 20) return WestZodiac.Aries.ToString();
-                    return WestZodiac.Taurus.ToString();
+                    return _date?.Day < 20 ? WestZodiac.Aries : WestZodiac.Taurus;
                 case 5:
-                    if (_date?.Day < 21) return WestZodiac.Taurus.ToString();
-                    return WestZodiac.Gemini.ToString();
+                    return _date?.Day < 21 ? WestZodiac.Taurus : WestZodiac.Gemini;
                 case 6:
-                    if (_date?.Day < 22) return WestZodiac.Gemini.ToString();
-                    return WestZodiac.Cancer.ToString();
+                    return _date?.Day < 22 ? WestZodiac.Gemini : WestZodiac.Cancer;
                 case 7:
-                    if (_date?.Day < 24) return WestZodiac.Cancer.ToString();
-                    return WestZodiac.Leo.ToString();
+                    return _date?.Day < 24 ? WestZodiac.Cancer : WestZodiac.Leo;
                 case 8:
-                    if (_date?.Day < 24) return WestZodiac.Leo.ToString();
-                    return WestZodiac.Virgo.ToString();
+                    return _date?.Day < 24 ? WestZodiac.Leo : WestZodiac.Virgo;
                 case 9:
-                    if (_date?.Day < 23) return WestZodiac.Virgo.ToString();
-                    return WestZodiac.Libra.ToString();
+                    return _date?.Day < 23 ? WestZodiac.Virgo : WestZodiac.Libra;
                 case 10:
-                    if (_date?.Day < 23) return WestZodiac.Libra.ToString();
-                    return WestZodiac.Scorpio.ToString();
+                    return _date?.Day < 23 ? WestZodiac.Libra : WestZodiac.Scorpio;
                 case 11:
-                    if (_date?.Day < 23) return WestZodiac.Scorpio.ToString();
-                    return WestZodiac.Sagittarius.ToString();
+                    return _date?.Day < 23 ? WestZodiac.Scorpio : WestZodiac.Sagittarius;
                 case 12:
-                    if (_date?.Day < 21) return WestZodiac.Sagittarius.ToString();
-                    return WestZodiac.Capricorn.ToString();
+                    return _date?.Day < 21 ? WestZodiac.Sagittarius : WestZodiac.Capricorn;
                 default:
-                    return "";
+                    return WestZodiac.Undefined;
             }
         }
         public void UpdateWestZodiac()
@@ -125,10 +111,11 @@ namespace _01Burliai.Models
             _westZodiac = NewWestZodiac();
         }
 
-        private string NewChineseZodiac()
+        private ChineseZodiac NewChineseZodiac()
         {
-            ChineseZodiac enumVar = (ChineseZodiac)(_date?.Year % 12);
-            return enumVar.ToString();
+            if (_date == null)
+                return ChineseZodiac.Undefined;
+            return (ChineseZodiac)(_date?.Year % 12);
         }
 
         public void UpdateChineseZodiac()
