@@ -27,9 +27,19 @@ namespace _01Burliai.ViewModels
             set { _signs.Date = value; }
         }
 
+        public int Age
+        {
+            get { return _signs.Age; }
+        }
+
         public string WestZodiacSign
         {
             get { return _signs.WestZodiacSign; }
+        }
+
+        public string ChineseZodiacSign
+        {
+            get { return _signs.ChineseZodiacSign; }
         }
 
         public RelayCommand<object> OutputCommand
@@ -43,8 +53,7 @@ namespace _01Burliai.ViewModels
 
         private void Output()
         {
-            TimeSpan span = DateTime.Today - (Date ?? DateTime.Today); // Here Date will never be null
-            int years = (new DateTime(1,1,1) + span).AddDays(-1).Year - 1;
+            int years = Age;
             if (years < 0 || years > 135)
             {
                 MessageBox.Show("Invalid year");
@@ -52,6 +61,10 @@ namespace _01Burliai.ViewModels
             }
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
             _signs.updateWestZodiac();
+            _signs.updateChineseZodiac();
+            Console.WriteLine(Age);
+            Console.WriteLine(WestZodiacSign);
+            Console.WriteLine(ChineseZodiacSign);
         }
 
         private bool CanExecute()
