@@ -29,14 +29,14 @@ namespace _01Burliai.Tools.Controls
 
         public DateTime? SelectedDate
         {
-            get { return DatePicker.SelectedDate; }
-            set { DatePicker.SelectedDate = value; }
+            get { return (DateTime?)GetValue(SelectedDateProperty); }
+            set { SetValue(SelectedDateProperty, value); }
         }
 
         public ICommand Command
         {
-            get { return Button.Command; }
-            set { Button.Command = value; }
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
         }
 
         public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(
