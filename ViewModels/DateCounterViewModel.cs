@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using _01Burliai.Annotations;
 using _01Burliai.Models;
 using _01Burliai.Tools;
 
 namespace _01Burliai.ViewModels
 {
-    class DateCounterViewModel
+    class DateCounterViewModel : INotifyPropertyChanged
     {
         #region Fields
         private ZodiacSigns _signs = new ZodiacSigns();
@@ -51,6 +54,16 @@ namespace _01Burliai.ViewModels
         }
         #endregion
 
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
         private void Output()
         {
             int years = Age;
@@ -62,9 +75,9 @@ namespace _01Burliai.ViewModels
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
             _signs.UpdateWestZodiac();
             _signs.UpdateChineseZodiac();
-            Console.WriteLine(Age);
-            Console.WriteLine(WestZodiacSign);
-            Console.WriteLine(ChineseZodiacSign);
+            OnPropertyChanged("Age");
+            OnPropertyChanged("WestZodiacSign");
+            OnPropertyChanged("ChineseZodiacSign");
         }
 
         private bool CanExecute()

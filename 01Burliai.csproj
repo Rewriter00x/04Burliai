@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\ZodiacSigns.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Tools\Controls\DateSelector.xaml.cs">
       <DependentUpon>DateSelector.xaml</DependentUpon>
     </Compile>
