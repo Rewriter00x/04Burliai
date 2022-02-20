@@ -60,8 +60,8 @@ namespace _01Burliai.ViewModels
                 return;
             }
             if (DateTime.Today.Day == Date?.Day && DateTime.Today.Month == Date?.Month) MessageBox.Show("Happy Birthday!");
-            _signs.updateWestZodiac();
-            _signs.updateChineseZodiac();
+            _signs.UpdateWestZodiac();
+            _signs.UpdateChineseZodiac();
             Console.WriteLine(Age);
             Console.WriteLine(WestZodiacSign);
             Console.WriteLine(ChineseZodiacSign);

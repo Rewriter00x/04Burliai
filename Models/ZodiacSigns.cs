@@ -70,12 +70,13 @@ namespace _01Burliai.Models
             get
             {
                 TimeSpan span = DateTime.Today - (Date ?? DateTime.Today); // Here Date will never be null
+                if (span < TimeSpan.Zero) return 0;
                 return (new DateTime(1, 1, 1) + span).Year - 1;
             }
         }
         #endregion
 
-        private string newWestZodiac()
+        private string NewWestZodiac()
         {
             switch (_date?.Month)
             {
@@ -119,20 +120,20 @@ namespace _01Burliai.Models
                     return "";
             }
         }
-        public void updateWestZodiac()
+        public void UpdateWestZodiac()
         {
-            _westZodiac = newWestZodiac();
+            _westZodiac = NewWestZodiac();
         }
 
-        private string newChineseZodiac()
+        private string NewChineseZodiac()
         {
             ChineseZodiac enumVar = (ChineseZodiac)(_date?.Year % 12);
             return enumVar.ToString();
         }
 
-        public void updateChineseZodiac()
+        public void UpdateChineseZodiac()
         {
-            _chineseZodiac = newChineseZodiac();
+            _chineseZodiac = NewChineseZodiac();
         }
     }
 
