@@ -18,8 +18,8 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <controls:DateSelector x:Name="DateSelector" SelectedDate="{Binding Date, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Command="{Binding OutputCommand}" Caption="Select Your Birthday" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></controls:DateSelector>
-        <TextBlock Name="TbAge" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" Text="Age"></TextBlock>
+        <TextBlock Name="TbAge" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" Text="{Binding Age, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
         <TextBlock Name="TbWest"  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" Text="{Binding WestZodiacSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-        <TextBlock Name="TbChinese" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" Text="Chinese Zodiac Sign"></TextBlock>
+        <TextBlock Name="TbChinese" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" Text="{Binding ChineseZodiacSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
     </Grid>
 </UserControl>

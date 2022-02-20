@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _01Burliai.Models
 {
-
+    #region Enums
     enum WestZodiac
     {
         Capricorn,
@@ -23,11 +23,29 @@ namespace _01Burliai.Models
         Sagittarius,
     }
 
+    enum ChineseZodiac
+    {
+        Monkey,
+        Rooster,
+        Dog,
+        Pig,
+        Rat,
+        Oxen,
+        Tiger,
+        Rabbit,
+        Dragon,
+        Snake,
+        Horse,
+        Sheep,
+    }
+    #endregion
+
     class ZodiacSigns
     {
         #region Fields
         private DateTime? _date;
         private string _westZodiac;
+        private string _chineseZodiac;
         #endregion
 
         #region Properties
@@ -40,6 +58,20 @@ namespace _01Burliai.Models
         public string WestZodiacSign
         {
             get { return _westZodiac; }
+        }
+
+        public string ChineseZodiacSign
+        {
+            get { return _chineseZodiac; }
+        }
+
+        public int Age
+        {
+            get
+            {
+                TimeSpan span = DateTime.Today - (Date ?? DateTime.Today); // Here Date will never be null
+                return (new DateTime(1, 1, 1) + span).Year - 1;
+            }
         }
         #endregion
 
@@ -90,6 +122,17 @@ namespace _01Burliai.Models
         public void updateWestZodiac()
         {
             _westZodiac = newWestZodiac();
+        }
+
+        private string newChineseZodiac()
+        {
+            ChineseZodiac enumVar = (ChineseZodiac)(_date?.Year % 12);
+            return enumVar.ToString();
+        }
+
+        public void updateChineseZodiac()
+        {
+            _chineseZodiac = newChineseZodiac();
         }
     }
 
