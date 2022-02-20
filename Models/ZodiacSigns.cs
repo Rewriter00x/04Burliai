@@ -45,7 +45,6 @@ namespace _01Burliai.Models
 
         private string newWestZodiac()
         {
-            if (_date == null) return "";
             switch (_date?.Month)
             {
                 case 1:
