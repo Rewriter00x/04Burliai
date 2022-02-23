@@ -63,7 +63,7 @@ namespace _01Burliai.ViewModels
         {
             int years = Age;
             //TODO власне через це і можна вибрати дату в майбутньому, так як в такому випадку Age буде 0
-            if (years < 0 || years > 135)
+            if (years > 135)
             {
                 MessageBox.Show("Invalid year");
                 return;
