@@ -47,6 +47,7 @@ namespace _01Burliai.Tools.Controls
         {
             InitializeComponent();
             DatePicker.DisplayDateEnd = DateTime.Today;
+            DatePicker.DisplayDateStart = new DateTime(DateTime.Today.Year - 135, DateTime.Today.Month, DateTime.Today.Day);
         }
     }
 }
