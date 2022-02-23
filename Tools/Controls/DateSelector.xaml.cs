@@ -56,6 +56,7 @@ namespace _01Burliai.Tools.Controls
         public DateSelector()
         {
             InitializeComponent();
+            DatePicker.DisplayDateEnd = DateTime.Today;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace _01Burliai.ViewModels
         {
             get
             {
-                return _outputCommand ?? (_outputCommand = new RelayCommand<object>(_=>Output(), _=>CanExecute()));
+                return _outputCommand ??= new RelayCommand<object>(_=>Output(), _=>CanExecute());
             }
         }
         #endregion
