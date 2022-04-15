@@ -14,16 +14,19 @@ namespace _01Burliai.Tools.Controls
         public string PersonName
         {
             get { return (string)GetValue(PersonNameProperty); }
+            set { SetValue(PersonNameProperty, value); }
         }
 
         public string PersonSurname
         {
             get { return (string)GetValue(PersonSurnameProperty); }
+            set { SetValue(PersonSurnameProperty, value); }
         }
 
         public string PersonEmail
         {
             get { return (string)GetValue(PersonEmailProperty); }
+            set { SetValue(PersonEmailProperty, value); }
         }
 
         public DateTime? Birthday
