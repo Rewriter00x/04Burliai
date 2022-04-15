@@ -39,6 +39,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +65,12 @@
     <Compile Include="Tools\Controls\DateSelector.xaml.cs">
       <DependentUpon>DateSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Controls\PersonInput.xaml.cs">
+      <DependentUpon>PersonInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Controls\TextBoxWithCaption.xaml.cs">
+      <DependentUpon>TextBoxWithCaption.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="ViewModels\DateCounterViewModel.cs" />
     <Compile Include="Views\DateCounterView.xaml.cs">
@@ -81,6 +89,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Tools\Controls\DateSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\Controls\PersonInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\Controls\TextBoxWithCaption.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
