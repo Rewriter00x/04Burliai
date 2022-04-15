@@ -19,6 +19,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <controls:PersonInput Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0"></controls:PersonInput> 
+        <controls:PersonInput Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" ProceedCommand="{Binding ProceedCommand}"></controls:PersonInput> 
     </Grid>
 </UserControl>
