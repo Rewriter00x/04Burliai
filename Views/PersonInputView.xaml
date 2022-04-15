@@ -19,6 +19,14 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <controls:PersonInput Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" PersonName="{Binding Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonSurname="{Binding Surname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonEmail="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Birthday="{Binding Birthday, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ProceedCommand="{Binding ProceedCommand}"></controls:PersonInput> 
+        <controls:PersonInput Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" PersonName="{Binding Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonSurname="{Binding Surname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonEmail="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Birthday="{Binding Birthday, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ProceedCommand="{Binding ProceedCommand}"></controls:PersonInput>
+        <TextBlock Foreground="Gray" Name="TbName" Grid.Row="1" Grid.Column="0" Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbSurname" Grid.Row="1" Grid.Column="1" Text="{Binding Surname, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbEmail" Grid.Row="2" Grid.Column="0" Text="{Binding Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbBigthday" Grid.Row="2" Grid.Column="1" Text="{Binding BirthdayString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbWestZodiac" Grid.Row="3" Grid.Column="0" Text="{Binding SunSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbChineseZodiac" Grid.Row="3" Grid.Column="1" Text="{Binding ChineseSign, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbIsAdult" Grid.Row="4" Grid.Column="0" Text="{Binding IsAdult, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <TextBlock Foreground="Gray" Name="TbIsBirthday" Grid.Row="4" Grid.Column="1" Text="{Binding IsBirthday, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
     </Grid>
 </UserControl>

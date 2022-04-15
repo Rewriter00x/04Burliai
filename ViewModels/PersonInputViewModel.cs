@@ -1,12 +1,17 @@
 ﻿using System;
-using _01Burliai.Tools;
-using _01Burliai.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using _01Burliai.Annotations;
+using _01Burliai.Models;
+using _01Burliai.Tools;
 
 namespace _01Burliai.ViewModels
 {
-    class PersonInputViewModel
+    class PersonInputViewModel : INotifyPropertyChanged
     {
+        
+
         #region Fields
         private Person _person = new Person("", "", "", null);
 
@@ -40,6 +45,31 @@ namespace _01Burliai.ViewModels
             set { _person.Birthday = value; }
         }
 
+        public string BirthdayString
+        {
+            get { return Birthday?.ToString("dd.MM.yyyy"); }
+        }
+
+        public WestZodiac SunSign
+        {
+            get { return _person.SunSign; }
+        }
+
+        public ChineseZodiac ChineseSign
+        {
+            get { return _person.ChineseSign; }
+        }
+
+        public string IsAdult
+        {
+            get { return _person.isAdult ? "Is adult" : "Is not adult"; }
+        }
+
+        public string IsBirthday
+        {
+            get { return _person.isBirthday ? "Is birthday" : "Is not birthday"; }
+        }
+
         public RelayCommand<object> ProceedCommand
         {
             get
@@ -49,9 +79,28 @@ namespace _01Burliai.ViewModels
         }
         #endregion
 
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
         private void Proceed()
         {
-            MessageBox.Show("Name: " + _person.Name + "\nSurname: " + _person.Surname + "\nEmail: " + _person.Email + "\nBirthday: " + _person.Birthday?.Day + "." + _person.Birthday?.Month + "." + _person.Birthday?.Year);
+            _person.UpdateSunSign(); // TODO make async
+            _person.UpdateChineseSign();
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(Surname));
+            OnPropertyChanged(nameof(Email));
+            OnPropertyChanged(nameof(BirthdayString));
+            OnPropertyChanged(nameof(SunSign));
+            OnPropertyChanged(nameof(ChineseSign));
+            OnPropertyChanged(nameof(IsAdult));
+            OnPropertyChanged(nameof(IsBirthday));
         }
 
         private bool CanExecute()

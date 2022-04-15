@@ -77,6 +77,14 @@ namespace _01Burliai.Models
         public Person(string name, string surname, DateTime birthdate) : this(name, surname, "No Email", birthdate) { }
         #endregion
 
+        public void UpdateSunSign()
+        {
+            _signs.UpdateWestZodiac();
+        }
 
+        public void UpdateChineseSign()
+        {
+            _signs.UpdateChineseZodiac();
+        }
     }
 }
