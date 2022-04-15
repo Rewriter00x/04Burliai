@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ZodiacSigns.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Tools\Controls\DateSelector.xaml.cs">
