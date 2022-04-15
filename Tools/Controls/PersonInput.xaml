@@ -20,7 +20,7 @@
         <controls:TextBoxWithCaption x:Name="TbSurname" Grid.Row="1" Caption="Surname"></controls:TextBoxWithCaption>
         <controls:TextBoxWithCaption x:Name="TbEmail" Grid.Row="2" Caption="Email"></controls:TextBoxWithCaption>
         <TextBlock Name="TbDateCaption" Grid.Row="3" Foreground="Gray" Text="Birthday"></TextBlock>
-        <DatePicker Name="DpBirthDate" Grid.Row="4" SelectedDate="{Binding ElementName=personInput, Path=Birthday, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+        <DatePicker Name="DpBirthDate" Grid.Row="4" SelectedDate="{Binding ElementName=personInput, Path=Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
         <Button Name="BProcees" Grid.Row="5" Content="Proceed" Height="30" Command="{Binding ElementName=personInput, Path=ProceedCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
     </Grid>
 </UserControl>

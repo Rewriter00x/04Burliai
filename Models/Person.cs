@@ -8,8 +8,8 @@ namespace _01Burliai.Models
         private string _name;
         private string _surname;
         private string _email;
-        private DateTime _birthday;
-        private ZodiacSigns _signs;
+        private DateTime? _birthday;
+        private ZodiacSigns _signs = new ZodiacSigns();
         #endregion
 
         #region Properties
@@ -31,15 +31,18 @@ namespace _01Burliai.Models
             set { _email = value; }
         }
 
-        public DateTime Birthday
+        public DateTime? Birthday
         {
             get { return _birthday; }
-            set { _birthday = value; }
+            set { 
+                _birthday = value;
+                _signs.Date = _birthday;
+            }
         }
 
         public bool isAdult
         {
-            get { return DateTime.Today.Year - _birthday.Year >= 18; }
+            get { return DateTime.Today.Year - _birthday?.Year >= 18; }
         }
 
         public WestZodiac SunSign
@@ -54,23 +57,23 @@ namespace _01Burliai.Models
 
         public bool isBirthday
         {
-            get { return DateTime.Today.Day == _birthday.Day && DateTime.Today.Month == _birthday.Month; }
+            get { return DateTime.Today.Day == _birthday?.Day && DateTime.Today.Month == _birthday?.Month; }
         }
         #endregion
 
         #region Constructors
-        public Person(string name, string surname, string email, DateTime birthday)
+        public Person(string name, string surname, string email, DateTime? birthday)
         {
             _name = name;
             _surname = surname;
             _email = email;
             _birthday = birthday;
-            _signs = new ZodiacSigns(birthday);
+            _signs.Date = _birthday;
         }
 
         // We only press "Proceed" if all fields are not null, so only top constructor will be executed
 
-        public Person(string name, string surname, string email) : this(name, surname, email, DateTime.Today) { }
+        public Person(string name, string surname, string email) : this(name, surname, email, null) { }
         public Person(string name, string surname, DateTime birthdate) : this(name, surname, "No Email", birthdate) { }
         #endregion
 

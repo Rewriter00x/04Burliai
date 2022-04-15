@@ -11,24 +11,25 @@ namespace _01Burliai.Tools.Controls
     public partial class PersonInput : UserControl
     {
 
-        public string Name
+        public string PersonName
         {
-            get { return TbName.Value; }
+            get { return (string)GetValue(PersonNameProperty); }
         }
 
-        public string Surname
+        public string PersonSurname
         {
-            get { return TbSurname.Value; }
+            get { return (string)GetValue(PersonSurnameProperty); }
         }
 
-        public string Email
+        public string PersonEmail
         {
-            get { return TbEmail.Value; }
+            get { return (string)GetValue(PersonEmailProperty); }
         }
 
         public DateTime? Birthday
         {
             get { return (DateTime?)GetValue(BirthdayProperty); }
+            set { SetValue(BirthdayProperty, value); }
         }
 
         public ICommand ProceedCommand
@@ -36,6 +37,27 @@ namespace _01Burliai.Tools.Controls
             get { return (ICommand)GetValue(ProceedCommandProperty); }
             set { SetValue(ProceedCommandProperty, value); }
         }
+
+        public static readonly DependencyProperty PersonNameProperty = DependencyProperty.Register(
+            "PersonName",
+            typeof(string),
+            typeof(PersonInput),
+            new PropertyMetadata(null)
+            );
+
+        public static readonly DependencyProperty PersonSurnameProperty = DependencyProperty.Register(
+            "PersonSurname",
+            typeof(string),
+            typeof(PersonInput),
+            new PropertyMetadata(null)
+            );
+
+        public static readonly DependencyProperty PersonEmailProperty = DependencyProperty.Register(
+            "PersonEmail",
+            typeof(string),
+            typeof(PersonInput),
+            new PropertyMetadata(null)
+            );
 
         public static readonly DependencyProperty BirthdayProperty = DependencyProperty.Register(
            "Birthday",

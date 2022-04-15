@@ -74,17 +74,6 @@ namespace _01Burliai.Models
         }
         #endregion
 
-        #region Constructors
-        public ZodiacSigns() { }
-
-        public ZodiacSigns(DateTime date)
-        {
-            _date = date;
-            UpdateWestZodiac();
-            UpdateChineseZodiac();
-        }
-        #endregion
-
         private WestZodiac NewWestZodiac()
         {
             switch (_date?.Month)
