@@ -1,6 +1,7 @@
 ﻿using System;
 using _01Burliai.Tools;
 using _01Burliai.Models;
+using System.Windows;
 
 namespace _01Burliai.ViewModels
 {
@@ -50,7 +51,7 @@ namespace _01Burliai.ViewModels
 
         private void Proceed()
         {
-            
+            MessageBox.Show("Name: " + _person.Name + "\nSurname: " + _person.Surname + "\nEmail: " + _person.Email + "\nBirthday: " + _person.Birthday?.Day + "." + _person.Birthday?.Month + "." + _person.Birthday?.Year);
         }
 
         private bool CanExecute()

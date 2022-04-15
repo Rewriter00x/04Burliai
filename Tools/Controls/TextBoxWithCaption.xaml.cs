@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace _01Burliai.Tools.Controls
 {
@@ -16,8 +17,16 @@ namespace _01Burliai.Tools.Controls
 
         public string Value
         {
-            get { return TbBox.Text; }
+            get { return (string)GetValue(ValueProperty); }
+            set { SetValue(ValueProperty, value); }
         }
+
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+            "Value",
+            typeof(string),
+            typeof(TextBoxWithCaption),
+            new PropertyMetadata(null)
+            );
 
         public TextBoxWithCaption()
         {

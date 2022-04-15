@@ -16,9 +16,9 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <controls:TextBoxWithCaption x:Name="TbName" Grid.Row="0" Caption="Name"></controls:TextBoxWithCaption>
-        <controls:TextBoxWithCaption x:Name="TbSurname" Grid.Row="1" Caption="Surname"></controls:TextBoxWithCaption>
-        <controls:TextBoxWithCaption x:Name="TbEmail" Grid.Row="2" Caption="Email"></controls:TextBoxWithCaption>
+        <controls:TextBoxWithCaption x:Name="TbName" Grid.Row="0" Caption="Name" Value="{Binding ElementName=personInput, Path=PersonName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controls:TextBoxWithCaption>
+        <controls:TextBoxWithCaption x:Name="TbSurname" Grid.Row="1" Caption="Surname" Value="{Binding ElementName=personInput, Path=PersonSurname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controls:TextBoxWithCaption>
+        <controls:TextBoxWithCaption x:Name="TbEmail" Grid.Row="2" Caption="Email" Value="{Binding ElementName=personInput, Path=PersonEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></controls:TextBoxWithCaption>
         <TextBlock Name="TbDateCaption" Grid.Row="3" Foreground="Gray" Text="Birthday"></TextBlock>
         <DatePicker Name="DpBirthDate" Grid.Row="4" SelectedDate="{Binding ElementName=personInput, Path=Birthday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
         <Button Name="BProcees" Grid.Row="5" Content="Proceed" Height="30" Command="{Binding ElementName=personInput, Path=ProceedCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
