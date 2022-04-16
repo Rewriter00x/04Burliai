@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using _01Burliai.Annotations;
 using _01Burliai.Models;
@@ -89,16 +90,26 @@ namespace _01Burliai.ViewModels
         }
         #endregion
 
-        private void Proceed()
+        private void UpdateSunSign()
         {
-            _person.UpdateSunSign(); // TODO make async
+            _person.UpdateSunSign();
+            OnPropertyChanged(nameof(SunSign));
+        }
+
+        private void UpdateChineseSign()
+        {
             _person.UpdateChineseSign();
+            OnPropertyChanged(nameof(ChineseSign));
+        }
+
+        private async void Proceed()
+        {
+            await Task.Run(() => UpdateSunSign());
+            await Task.Run(() => UpdateChineseSign());
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Surname));
             OnPropertyChanged(nameof(Email));
             OnPropertyChanged(nameof(BirthdayString));
-            OnPropertyChanged(nameof(SunSign));
-            OnPropertyChanged(nameof(ChineseSign));
             OnPropertyChanged(nameof(IsAdult));
             OnPropertyChanged(nameof(IsBirthday));
         }
