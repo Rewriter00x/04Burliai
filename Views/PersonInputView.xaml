@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:_01Burliai.Tools.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="300
-             ">
+             d:DesignHeight="400" d:DesignWidth="300"
+             IsEnabled="{Binding IsEnabled}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows;
 using _01Burliai.Annotations;
 using _01Burliai.Models;
 using _01Burliai.Tools;
@@ -15,6 +14,8 @@ namespace _01Burliai.ViewModels
 
         #region Fields
         private Person _person = new Person("", "", "", null);
+
+        private int _enabled = 0;
 
         #region Commands
         private RelayCommand<object> _proceedCommand;
@@ -78,6 +79,14 @@ namespace _01Burliai.ViewModels
                 return _proceedCommand ??= new RelayCommand<object>(_ => Proceed(), _ => CanExecute());
             }
         }
+
+        public bool IsEnabled
+        {
+            get
+            {
+                return _enabled == 0;
+            }
+        }
         #endregion
 
         #region INotifyPropertyChanged
@@ -94,16 +103,19 @@ namespace _01Burliai.ViewModels
         {
             _person.UpdateSunSign();
             OnPropertyChanged(nameof(SunSign));
+            _enabled--;
         }
 
         private void UpdateChineseSign()
         {
             _person.UpdateChineseSign();
             OnPropertyChanged(nameof(ChineseSign));
+            _enabled--;
         }
 
         private async void Proceed()
         {
+            _enabled = 2;
             await Task.Run(() => UpdateSunSign());
             await Task.Run(() => UpdateChineseSign());
             OnPropertyChanged(nameof(Name));
