@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Exceptions\WrongEmailException.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ZodiacSigns.cs" />
     <Compile Include="Properties\Annotations.cs" />

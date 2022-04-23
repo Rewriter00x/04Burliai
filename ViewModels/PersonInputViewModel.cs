@@ -1,9 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using _01Burliai.Annotations;
 using _01Burliai.Models;
+using _01Burliai.Models.Exceptions;
 using _01Burliai.Tools;
 
 namespace _01Burliai.ViewModels
@@ -114,8 +118,32 @@ namespace _01Burliai.ViewModels
             OnPropertyChanged(nameof(IsEnabled));
         }
 
+        private void CheckEmail()
+        {
+            Regex rgx = new Regex("\\w+@\\w+[.\\w+]{1,}");
+            if (!rgx.IsMatch(_person.Email))
+                throw new WrongEmailException();
+        }
+
+        private bool CheckData()
+        {
+            bool res = true;
+            try
+            {
+                CheckEmail();
+            } catch (WrongEmailException e)
+            {
+                MessageBox.Show(e.Message);
+                res = false;
+            }
+            return res;
+        }
+
         private async void Proceed()
         {
+            if (!CheckData())
+                return;
+
             _enabled = 2;
             OnPropertyChanged(nameof(IsEnabled));
             await Task.Run(() => UpdateSunSign());
