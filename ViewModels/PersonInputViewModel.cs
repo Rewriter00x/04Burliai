@@ -11,7 +11,6 @@ namespace _01Burliai.ViewModels
     class PersonInputViewModel : INotifyPropertyChanged
     {
         
-
         #region Fields
         private Person _person = new Person("", "", "", null);
 
@@ -104,6 +103,7 @@ namespace _01Burliai.ViewModels
             _person.UpdateSunSign();
             OnPropertyChanged(nameof(SunSign));
             _enabled--;
+            OnPropertyChanged(nameof(IsEnabled));
         }
 
         private void UpdateChineseSign()
@@ -111,11 +111,13 @@ namespace _01Burliai.ViewModels
             _person.UpdateChineseSign();
             OnPropertyChanged(nameof(ChineseSign));
             _enabled--;
+            OnPropertyChanged(nameof(IsEnabled));
         }
 
         private async void Proceed()
         {
             _enabled = 2;
+            OnPropertyChanged(nameof(IsEnabled));
             await Task.Run(() => UpdateSunSign());
             await Task.Run(() => UpdateChineseSign());
             OnPropertyChanged(nameof(Name));
