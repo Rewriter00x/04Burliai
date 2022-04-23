@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -125,6 +124,14 @@ namespace _01Burliai.ViewModels
                 throw new WrongEmailException();
         }
 
+        private void CheckDate()
+        {
+            if ((DateTime.Today - _person.Birthday)?.TotalMilliseconds < 0)
+                throw new FutureDateException(_person.Birthday);
+            if ((_person.Birthday - DateTime.Today.AddYears(-135))?.TotalMilliseconds < 0)
+                throw new LongPastDateException(_person.Birthday);
+        }
+
         private bool CheckData()
         {
             bool res = true;
@@ -136,6 +143,14 @@ namespace _01Burliai.ViewModels
                 MessageBox.Show(e.Message);
                 res = false;
             }
+            try
+            {
+                CheckDate();
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                res = false;
+            } 
             return res;
         }
 

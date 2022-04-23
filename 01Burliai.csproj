@@ -59,6 +59,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Exceptions\FutureDateException.cs" />
+    <Compile Include="Models\Exceptions\LongPastDateException.cs" />
     <Compile Include="Models\Exceptions\WrongEmailException.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ZodiacSigns.cs" />

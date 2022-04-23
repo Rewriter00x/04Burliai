@@ -79,8 +79,8 @@ namespace _01Burliai.Tools.Controls
         public PersonInput()
         {
             InitializeComponent();
-            DpBirthDate.DisplayDateEnd = DateTime.Today;
-            DpBirthDate.DisplayDateStart = new DateTime(DateTime.Today.Year - 135, DateTime.Today.Month, DateTime.Today.Day);
+            //DpBirthDate.DisplayDateEnd = DateTime.Today;
+            //DpBirthDate.DisplayDateStart = new DateTime(DateTime.Today.Year - 135, DateTime.Today.Month, DateTime.Today.Day);
         }
     }
 }
