@@ -40,7 +40,7 @@ namespace _01Burliai.Models
             }
         }
 
-        public bool isAdult
+        public bool IsAdult
         {
             get { return DateTime.Today.Year - _birthday?.Year >= 18; }
         }
@@ -55,7 +55,7 @@ namespace _01Burliai.Models
             get { return _signs.ChineseZodiacSign; }
         }
 
-        public bool isBirthday
+        public bool IsBirthday
         {
             get { return DateTime.Today.Day == _birthday?.Day && DateTime.Today.Month == _birthday?.Month; }
         }

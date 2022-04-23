@@ -64,12 +64,12 @@ namespace _01Burliai.ViewModels
 
         public string IsAdult
         {
-            get { return _person.isAdult ? "Is adult" : "Is not adult"; }
+            get { return _person.IsAdult ? "Is adult" : "Is not adult"; }
         }
 
         public string IsBirthday
         {
-            get { return _person.isBirthday ? "Is birthday" : "Is not birthday"; }
+            get { return _person.IsBirthday ? "Is birthday" : "Is not birthday"; }
         }
 
         public RelayCommand<object> ProceedCommand
