@@ -62,9 +62,6 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ZodiacSigns.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Tools\Controls\DateSelector.xaml.cs">
-      <DependentUpon>DateSelector.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Tools\Controls\PersonInput.xaml.cs">
       <DependentUpon>PersonInput.xaml</DependentUpon>
     </Compile>
@@ -72,11 +69,7 @@
       <DependentUpon>TextBoxWithCaption.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\RelayCommand.cs" />
-    <Compile Include="ViewModels\DateCounterViewModel.cs" />
     <Compile Include="ViewModels\PersonInputViewModel.cs" />
-    <Compile Include="Views\DateCounterView.xaml.cs">
-      <DependentUpon>DateCounterView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PersonInputView.xaml.cs">
       <DependentUpon>PersonInputView.xaml</DependentUpon>
     </Compile>
@@ -92,19 +85,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Tools\Controls\DateSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Tools\Controls\PersonInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tools\Controls\TextBoxWithCaption.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DateCounterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
