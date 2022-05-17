@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -16,6 +18,7 @@ namespace _01Burliai.ViewModels
         
         #region Fields
         private Person _person = new Person("", "", "", null);
+        private ObservableCollection<Person> _persons = new ObservableCollection<Person>();
 
         private int _enabled = 0;
 
@@ -51,7 +54,7 @@ namespace _01Burliai.ViewModels
 
         public string BirthdayString
         {
-            get { return Birthday?.ToString("dd.MM.yyyy"); }
+            get { return _person.BirthdayString; }
         }
 
         public WestZodiac SunSign
@@ -72,6 +75,16 @@ namespace _01Burliai.ViewModels
         public string IsBirthday
         {
             get { return _person.IsBirthday ? "Is birthday" : "Is not birthday"; }
+        }
+
+        public ObservableCollection<Person> Persons
+        {
+            get { return _persons; }
+            private set 
+            { 
+                _persons = value;
+                OnPropertyChanged();
+            }
         }
 
         public RelayCommand<object> ProceedCommand
@@ -169,6 +182,8 @@ namespace _01Burliai.ViewModels
             OnPropertyChanged(nameof(BirthdayString));
             OnPropertyChanged(nameof(IsAdult));
             OnPropertyChanged(nameof(IsBirthday));
+
+            _persons.Add((Person)_person.Clone());
         }
 
         private bool CanExecute()

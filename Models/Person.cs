@@ -2,7 +2,7 @@
 
 namespace _01Burliai.Models
 {
-    class Person
+    class Person : ICloneable
     {
         #region Fields
         private string _name;
@@ -38,6 +38,11 @@ namespace _01Burliai.Models
                 _birthday = value;
                 _signs.Date = _birthday;
             }
+        }
+
+        public string BirthdayString
+        {
+            get { return Birthday?.ToString("dd.MM.yyyy"); }
         }
 
         public bool IsAdult
@@ -85,6 +90,11 @@ namespace _01Burliai.Models
         public void UpdateChineseSign()
         {
             _signs.UpdateChineseZodiac();
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }
