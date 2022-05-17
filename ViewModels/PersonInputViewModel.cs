@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace _01Burliai.ViewModels
         private ObservableCollection<Person> _persons = new ObservableCollection<Person>();
 
         private int _enabled = 0;
+        private bool _filtered = false;
 
         #region Commands
         private RelayCommand<object> _proceedCommand;
@@ -80,7 +82,7 @@ namespace _01Burliai.ViewModels
 
         public ObservableCollection<Person> Persons
         {
-            get { return _persons; }
+            get { return _filtered ? new ObservableCollection<Person>(_persons.Where(p=>p.IsAdult).OrderBy(p=>p)) : _persons; }
             private set 
             { 
                 _persons = value;
@@ -205,7 +207,8 @@ namespace _01Burliai.ViewModels
 
         private void Filter()
         {
-
+            _filtered = !_filtered;
+            OnPropertyChanged(nameof(Persons));
         }
 
         private bool CanExecuteProceed()
@@ -215,12 +218,12 @@ namespace _01Burliai.ViewModels
 
         private bool CanExecuteDelete()
         {
-            return false;
+            return Persons.Count > 0;
         }
 
         private bool CanExecuteFilter()
         {
-            return false;
+            return Persons.Count > 0;
         }
     }
 }
