@@ -18,6 +18,7 @@ namespace _01Burliai.ViewModels
         #region Fields
         private Person _person = new Person("", "", "", null);
         private ObservableCollection<Person> _persons = new ObservableCollection<Person>();
+        private Person _selectedPerson = null;
 
         private int _enabled = 0;
         private bool _filtered = false;
@@ -114,6 +115,12 @@ namespace _01Burliai.ViewModels
             }
         }
 
+        public Person SelectedPerson
+        {
+            get { return _selectedPerson; }
+            set { _selectedPerson = value; }
+        }
+
         public bool IsEnabled
         {
             get
@@ -202,7 +209,7 @@ namespace _01Burliai.ViewModels
 
         private void Delete()
         {
-
+            _persons.Remove(_selectedPerson);
         }
 
         private void Filter()
@@ -218,7 +225,7 @@ namespace _01Burliai.ViewModels
 
         private bool CanExecuteDelete()
         {
-            return Persons.Count > 0;
+            return _selectedPerson != null;
         }
 
         private bool CanExecuteFilter()
