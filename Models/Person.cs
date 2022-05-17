@@ -1,8 +1,14 @@
-﻿using System;
+﻿using _01Burliai.Annotations;
+using _01Burliai.Models.Exceptions;
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace _01Burliai.Models
 {
-    class Person : ICloneable
+    class Person : ICloneable, INotifyPropertyChanged
     {
         #region Fields
         private string _name;
@@ -28,7 +34,17 @@ namespace _01Burliai.Models
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set { 
+                try
+                {
+                    CheckEmail(value);
+                    _email = value;
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         public DateTime? Birthday
@@ -43,6 +59,22 @@ namespace _01Burliai.Models
         public string BirthdayString
         {
             get { return Birthday?.ToString("dd.MM.yyyy"); }
+            set
+            {
+                try
+                {
+                    DateTime temp = DateTime.ParseExact(value, "dd.MM.yyyy", null);
+                    CheckDate(temp);
+                    Birthday = temp;
+                    OnPropertyChanged(nameof(IsAdult));
+                    OnPropertyChanged(nameof(IsBirthday));
+                    UpdateSigns();
+                }
+                catch
+                {
+                   
+                }
+            }
         }
 
         public bool IsAdult
@@ -66,6 +98,16 @@ namespace _01Burliai.Models
         }
         #endregion
 
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
         #region Constructors
         public Person(string name, string surname, string email, DateTime? birthday)
         {
@@ -82,14 +124,37 @@ namespace _01Burliai.Models
         public Person(string name, string surname, DateTime birthdate) : this(name, surname, "No Email", birthdate) { }
         #endregion
 
+        private async void UpdateSigns()
+        {
+            await Task.Run(() => UpdateSunSign());
+            await Task.Run(() => UpdateChineseSign());
+        }
+
+        public void CheckDate(DateTime? date)
+        {
+            if ((DateTime.Today - date)?.TotalMilliseconds< 0)
+                throw new FutureDateException(date);
+            if ((date - DateTime.Today.AddYears(-135))?.TotalMilliseconds< 0)
+                throw new LongPastDateException(date);
+        }
+
+        public void CheckEmail(string email)
+        {
+            Regex rgx = new Regex("\\w+@\\w+[.\\w+]{1,}");
+            if (!rgx.IsMatch(email))
+                throw new WrongEmailException();
+        }
+
         public void UpdateSunSign()
         {
             _signs.UpdateWestZodiac();
+            OnPropertyChanged(nameof(SunSign));
         }
 
         public void UpdateChineseSign()
         {
             _signs.UpdateChineseZodiac();
+            OnPropertyChanged(nameof(ChineseSign));
         }
 
         public object Clone()

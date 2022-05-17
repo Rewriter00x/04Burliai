@@ -16,16 +16,16 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <controls:PersonInput Grid.Row="0" PersonName="{Binding Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonSurname="{Binding Surname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" PersonEmail="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Birthday="{Binding Birthday, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" ProceedCommand="{Binding ProceedCommand}"></controls:PersonInput>
-        <DataGrid Grid.Row="1" Margin="0, 5" ItemsSource="{Binding Persons, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Grid.Row="1" Margin="0, 5" ItemsSource="{Binding Persons, Mode=OneWay}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Birthday" Binding="{Binding BirthdayString}"></DataGridTextColumn>
-                <DataGridTextColumn Header="IsBirthday" Binding="{Binding IsBirthday}"></DataGridTextColumn>
-                <DataGridTextColumn Header="IsAdult" Binding="{Binding IsAdult}"></DataGridTextColumn>
-                <DataGridTextColumn Header="SunSign" Binding="{Binding SunSign}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ChineseSign" Binding="{Binding ChineseSign}"></DataGridTextColumn>
+                <DataGridTextColumn Header="IsBirthday" Binding="{Binding IsBirthday}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="IsAdult" Binding="{Binding IsAdult}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="SunSign" Binding="{Binding SunSign}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="ChineseSign" Binding="{Binding ChineseSign}" IsReadOnly="True"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

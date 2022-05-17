@@ -55,6 +55,7 @@ namespace _01Burliai.ViewModels
         public string BirthdayString
         {
             get { return _person.BirthdayString; }
+            set { _person.BirthdayString = value; }
         }
 
         public WestZodiac SunSign
@@ -132,17 +133,12 @@ namespace _01Burliai.ViewModels
 
         private void CheckEmail()
         {
-            Regex rgx = new Regex("\\w+@\\w+[.\\w+]{1,}");
-            if (!rgx.IsMatch(_person.Email))
-                throw new WrongEmailException();
+            _person.CheckEmail(_person.Email);
         }
 
         private void CheckDate()
         {
-            if ((DateTime.Today - _person.Birthday)?.TotalMilliseconds < 0)
-                throw new FutureDateException(_person.Birthday);
-            if ((_person.Birthday - DateTime.Today.AddYears(-135))?.TotalMilliseconds < 0)
-                throw new LongPastDateException(_person.Birthday);
+            _person.CheckDate(_person.Birthday);
         }
 
         private bool CheckData()
