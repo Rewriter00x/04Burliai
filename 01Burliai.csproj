@@ -65,6 +65,9 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ZodiacSigns.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Tools\Controls\DataEditor.xaml.cs">
+      <DependentUpon>DataEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Controls\PersonInput.xaml.cs">
       <DependentUpon>PersonInput.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Tools\Controls\DataEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tools\Controls\PersonInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="_01Burliai.Tools.Controls.DataEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450"
+             x:Name="dataEditor">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="dataGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0, 5" ItemsSource="{Binding ElementName=dataEditor, Path=DataGridItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Birthday" Binding="{Binding BirthdayString}"></DataGridTextColumn>
+                <DataGridTextColumn Header="IsBirthday" Binding="{Binding IsBirthday}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="IsAdult" Binding="{Binding IsAdult}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="SunSign" Binding="{Binding SunSign}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="ChineseSign" Binding="{Binding ChineseSign}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" Grid.Column="0" Height="30" Content="Remove" Command="{Binding ElementName=dataEditor, Path=DeleteCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
+        <Button Grid.Row="1" Grid.Column="1" Height="30" Content="Filter by Adult" Command="{Binding ElementName=dataEditor, Path=FilterCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Button>
+    </Grid>
+</UserControl>

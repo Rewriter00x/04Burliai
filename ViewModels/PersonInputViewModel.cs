@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using _01Burliai.Annotations;
@@ -24,6 +22,8 @@ namespace _01Burliai.ViewModels
 
         #region Commands
         private RelayCommand<object> _proceedCommand;
+        private RelayCommand<object> _deleteCommand;
+        private RelayCommand<object> _filterCommand;
         #endregion
         #endregion
 
@@ -84,7 +84,7 @@ namespace _01Burliai.ViewModels
             private set 
             { 
                 _persons = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Persons));
             }
         }
 
@@ -92,7 +92,23 @@ namespace _01Burliai.ViewModels
         {
             get
             {
-                return _proceedCommand ??= new RelayCommand<object>(_ => Proceed(), _ => CanExecute());
+                return _proceedCommand ??= new RelayCommand<object>(_ => Proceed(), _ => CanExecuteProceed());
+            }
+        }
+
+        public RelayCommand<object> DeleteCommand
+        {
+            get
+            {
+                return _deleteCommand ??= new RelayCommand<object>(_ => Delete(), _ => CanExecuteDelete());
+            }
+        }
+
+        public RelayCommand<object> FilterCommand
+        {
+            get
+            {
+                return _filterCommand ??= new RelayCommand<object>(_ => Filter(), _ => CanExecuteFilter());
             }
         }
 
@@ -182,9 +198,29 @@ namespace _01Burliai.ViewModels
             _persons.Add((Person)_person.Clone());
         }
 
-        private bool CanExecute()
+        private void Delete()
+        {
+
+        }
+
+        private void Filter()
+        {
+
+        }
+
+        private bool CanExecuteProceed()
         {
             return !string.IsNullOrWhiteSpace(_person.Name) && !string.IsNullOrWhiteSpace(_person.Surname) && !string.IsNullOrWhiteSpace(_person.Email) && _person.Birthday != null;
+        }
+
+        private bool CanExecuteDelete()
+        {
+            return false;
+        }
+
+        private bool CanExecuteFilter()
+        {
+            return false;
         }
     }
 }
