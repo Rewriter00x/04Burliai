@@ -18,6 +18,7 @@ namespace _01Burliai.ViewModels
         #region Fields
         private Person _person = new Person("", "", "", null);
         private ObservableCollection<Person> _persons;
+        private ObservableCollection<Person> _personFiltered;
         private Person _selectedPerson = null;
         private FileRepository _repository = new FileRepository();
 
@@ -86,7 +87,15 @@ namespace _01Burliai.ViewModels
 
         public ObservableCollection<Person> Persons
         {
-            get { return _filtered ? new ObservableCollection<Person>(_persons.Where(p=>p.IsAdult).OrderBy(p=>p)) : _persons; }
+            get 
+            { 
+                if (_filtered)
+                {
+                    _personFiltered = new ObservableCollection<Person>(_persons.Where(p => p.IsAdult));
+                    return _personFiltered;
+                }
+                return _persons; 
+            }
             private set 
             { 
                 _persons = value;
