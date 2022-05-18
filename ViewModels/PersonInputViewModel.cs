@@ -3,11 +3,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
 using _01Burliai.Annotations;
 using _01Burliai.Models;
 using _01Burliai.Models.Exceptions;
+using _01Burliai.Repositories;
 using _01Burliai.Tools;
 
 namespace _01Burliai.ViewModels
@@ -17,8 +17,9 @@ namespace _01Burliai.ViewModels
         
         #region Fields
         private Person _person = new Person("", "", "", null);
-        private ObservableCollection<Person> _persons = new ObservableCollection<Person>();
+        private ObservableCollection<Person> _persons;
         private Person _selectedPerson = null;
+        private FileRepository _repository = new FileRepository();
 
         private int _enabled = 0;
         private bool _filtered = false;
@@ -117,8 +118,18 @@ namespace _01Burliai.ViewModels
 
         public Person SelectedPerson
         {
-            get { return _selectedPerson; }
-            set { _selectedPerson = value; }
+            get
+            {
+                return _selectedPerson; 
+            }
+            set {
+                if (_selectedPerson != null && value != null)
+                {
+                    _repository.Remove(_selectedPerson);
+                    UpdatePerson(_selectedPerson);
+                }
+                _selectedPerson = value;
+            }
         }
 
         public bool IsEnabled
@@ -130,6 +141,11 @@ namespace _01Burliai.ViewModels
         }
         #endregion
 
+        public PersonInputViewModel()
+        {
+            _persons = _repository.Persons;
+        }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -139,22 +155,6 @@ namespace _01Burliai.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
-        private void UpdateSunSign()
-        {
-            _person.UpdateSunSign();
-            OnPropertyChanged(nameof(SunSign));
-            _enabled--;
-            OnPropertyChanged(nameof(IsEnabled));
-        }
-
-        private void UpdateChineseSign()
-        {
-            _person.UpdateChineseSign();
-            OnPropertyChanged(nameof(ChineseSign));
-            _enabled--;
-            OnPropertyChanged(nameof(IsEnabled));
-        }
 
         private void CheckEmail()
         {
@@ -188,27 +188,24 @@ namespace _01Burliai.ViewModels
             return res;
         }
 
-        private async void Proceed()
+        private async void UpdatePerson(Person p)
+        {
+            await _repository.AddOrUpdateAsync(p);
+        }
+
+        private void Proceed()
         {
             if (!CheckData())
                 return;
 
-            _enabled = 2;
-            OnPropertyChanged(nameof(IsEnabled));
-            await Task.Run(() => UpdateSunSign());
-            await Task.Run(() => UpdateChineseSign());
-            OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(Surname));
-            OnPropertyChanged(nameof(Email));
-            OnPropertyChanged(nameof(BirthdayString));
-            OnPropertyChanged(nameof(IsAdult));
-            OnPropertyChanged(nameof(IsBirthday));
-
-            _persons.Add((Person)_person.Clone());
+            Person p = (Person)_person.Clone();
+            _persons.Add(p);
+            UpdatePerson(p);
         }
 
         private void Delete()
         {
+            _repository.Remove(_selectedPerson);
             _persons.Remove(_selectedPerson);
         }
 
