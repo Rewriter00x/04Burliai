@@ -116,12 +116,8 @@ namespace _01Burliai.Models
             _email = email;
             _birthday = birthday;
             _signs.Date = _birthday;
+            UpdateSigns();
         }
-
-        // We only press "Proceed" if all fields are not null, so only top constructor will be executed
-
-        public Person(string name, string surname, string email) : this(name, surname, email, null) { }
-        public Person(string name, string surname, DateTime birthdate) : this(name, surname, "No Email", birthdate) { }
         #endregion
 
         private async void UpdateSigns()
