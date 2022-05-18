@@ -131,7 +131,8 @@ namespace _01Burliai.ViewModels
                     UpdatePerson(_selectedPerson);
                 }
                 _selectedPerson = value;
-                _prevPerson = (Person)_selectedPerson.Clone();
+                if (_selectedPerson != null)
+                    _prevPerson = (Person)_selectedPerson.Clone();
             }
         }
 
@@ -192,11 +193,6 @@ namespace _01Burliai.ViewModels
         }
 
         private async void UpdatePerson(Person p)
-        {
-            await _repository.AddOrUpdateAsync(p);
-        }
-
-        private void Proceed()
         {
             await _repository.AddOrUpdateAsync(p);
         }
