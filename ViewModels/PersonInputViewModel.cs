@@ -198,6 +198,11 @@ namespace _01Burliai.ViewModels
 
         private void Proceed()
         {
+            await _repository.AddOrUpdateAsync(p);
+        }
+
+        private void Proceed()
+        {
             if (!CheckData())
                 return;
 
